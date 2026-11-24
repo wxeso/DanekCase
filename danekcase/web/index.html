@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#090b10"><title>DanekCase</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:#090b10;--panel:#11151e;--panel2:#171d29;--line:#252d3b;--text:#f4f6fb;--muted:#8c96a8;--red:#f04452;--gold:#f2c66d;--green:#62d6a4}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#34202a 0,#11131b 38%,var(--bg) 72%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;padding-bottom:94px}
+header{padding:22px 18px 14px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:20px;font-weight:950;letter-spacing:2px}.brand span{color:var(--red)}.tag{font-size:10px;color:var(--gold);letter-spacing:2px;margin-top:3px}.avatar{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,#f04452,#8f243d);display:grid;place-items:center;font-weight:900}
+.wrap{padding:0 16px;max-width:620px;margin:auto}.balance{background:linear-gradient(110deg,#241821,#171923 62%,#292117);border:1px solid #50313a;border-radius:20px;padding:17px 18px;margin:8px 0 20px;position:relative;overflow:hidden}.balance:after{content:"DNC";position:absolute;right:12px;top:8px;font-size:46px;font-weight:1000;color:#ffffff08}.eyebrow{font-size:10px;color:#c7a8a8;letter-spacing:2px}.amount{font-size:28px;font-weight:900;margin-top:5px}.coin{color:var(--gold);font-size:13px}.sectionhead{display:flex;align-items:end;justify-content:space-between;margin:22px 2px 12px}.sectionhead h2{font-size:17px;margin:0;letter-spacing:.3px}.hint{font-size:11px;color:var(--muted)}
+.casegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.case{background:linear-gradient(145deg,#1b202c,#10141c);border:1px solid var(--line);border-radius:18px;padding:12px;min-width:0}.caseart{height:108px;border-radius:13px;background:radial-gradient(circle at 50% 42%,#74303b 0,#321d2b 35%,#171a25 75%);display:grid;place-items:center;font-size:49px;position:relative;overflow:hidden}.case:nth-child(2) .caseart{background:radial-gradient(circle at 50% 42%,#294b6c,#172334 70%)}.case:nth-child(3) .caseart{background:radial-gradient(circle at 50% 42%,#6d5128,#29221c 70%)}.case h3{font-size:12px;letter-spacing:1px;margin:11px 0 5px}.price{font-size:11px;color:var(--gold);margin-bottom:10px}.btn{border:0;border-radius:12px;background:linear-gradient(135deg,#f04452,#bb293e);color:white;font-weight:850;padding:12px 14px;width:100%;font-size:12px;cursor:pointer;box-shadow:0 7px 20px #e9364a22}.btn:disabled{opacity:.45}.btn.secondary{background:#222a38;box-shadow:none;border:1px solid #30394a}.btn.gold{background:linear-gradient(135deg,#e9c16c,#a8792c);color:#1b1710}.tabs{position:fixed;bottom:0;left:0;right:0;background:#0d1018f2;backdrop-filter:blur(18px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:10px 8px calc(10px + env(safe-area-inset-bottom));z-index:10}.tab{background:none;border:0;color:#8993a5;font-size:10px;display:grid;gap:5px;justify-items:center}.tab b{font-size:19px}.tab.active{color:#fff}.tab.active b{color:var(--red)}.page{display:none}.page.active{display:block}.item{display:flex;align-items:center;gap:11px;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:11px;margin-bottom:9px}.skinicon{width:53px;height:53px;border-radius:12px;background:linear-gradient(135deg,#2c3546,#151b26);display:grid;place-items:center;font-size:24px;flex-shrink:0}.itemmain{flex:1;min-width:0}.itemname{font-size:12px;font-weight:800}.itemmeta{font-size:10px;color:var(--muted);margin-top:5px}.value{font-size:11px;color:var(--gold);margin-top:5px}.smallbtn{border:1px solid #3a4557;background:#222a38;color:#fff;border-radius:10px;padding:9px;font-size:10px;font-weight:800}.profilebox{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:17px;margin-bottom:12px}.statgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.stat{background:var(--panel2);padding:13px;border-radius:13px}.stat strong{font-size:20px;display:block}.stat small{color:var(--muted)}.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:22px;z-index:20}.modal.show{display:flex}.modalbox{background:#171c27;border:1px solid #394354;border-radius:22px;padding:22px;text-align:center;width:100%;max-width:360px}.drop{font-size:54px;margin:12px}.muted{color:var(--muted)}.creator{color:var(--gold);font-size:11px;margin-top:8px}.toast{position:fixed;top:15px;left:50%;transform:translateX(-50%);background:#242d3c;border:1px solid #46536a;padding:11px 15px;border-radius:12px;font-size:12px;z-index:30;display:none}.empty{text-align:center;color:var(--muted);padding:32px 12px;background:var(--panel);border:1px dashed #30394a;border-radius:16px}
+</style>
+</head>
+<body>
+<header><div><div class="brand">DANEK<span>CASE</span></div><div class="tag">VIRTUAL SKIN LAB</div></div><div class="avatar" id="avatar">D</div></header>
+<div class="wrap">
+<div class="balance"><div class="eyebrow">ТВОЙ БАЛАНС</div><div class="amount" id="balance">—</div><div class="coin">◈ DanekCoin</div><div id="creatorBalance" class="creator"></div></div>
+<section id="casesPage" class="page active">
+<div class="sectionhead"><h2>Выбери кейс</h2><span class="hint">Открывай коллекцию</span></div>
+<div class="casegrid" id="caseGrid"></div>
+<div class="sectionhead"><h2>Ежедневный бонус</h2><span class="hint">Раз в 24 часа</span></div>
+<button class="btn gold" id="dailyBtn" onclick="daily()">ЗАБРАТЬ +500 DNC</button>
+</section>
+<section id="inventoryPage" class="page"><div class="sectionhead"><h2>Твой инвентарь</h2><span class="hint" id="invCount"></span></div><div id="inventory"></div></section>
+<section id="upgradePage" class="page"><div class="sectionhead"><h2>Апгрейд лаборатория</h2><span class="hint">Рискни ради редкости</span></div><div id="upgrade"></div></section>
+<section id="profilePage" class="page"><div class="sectionhead"><h2>Профиль игрока</h2></div><div class="profilebox"><div class="eyebrow">ИГРОК</div><h2 id="playerName">Загрузка...</h2><div class="muted" id="playerId"></div><div class="creator" id="creatorLabel"></div></div><div class="statgrid" id="stats"></div><p class="hint" style="line-height:1.6;margin-top:16px">DanekCoin и предметы — исключительно виртуальные игровые значения. Нет депозитов, денежных ставок, вывода или обмена на реальные деньги.</p></section>
+</div>
+<nav class="tabs">
+<button class="tab active" data-page="cases"><b>▣</b>КЕЙСЫ</button><button class="tab" data-page="inventory"><b>▤</b>ИНВЕНТАРЬ</button><button class="tab" data-page="upgrade"><b>⚡</b>АПГРЕЙД</button><button class="tab" data-page="profile"><b>◉</b>ПРОФИЛЬ</button>
+</nav>
+<div class="modal" id="modal"><div class="modalbox"><div class="eyebrow">DANEKCASE DROP</div><div class="drop" id="dropIcon">🎁</div><h2 id="dropTitle">Кейс открыт!</h2><p id="dropText" class="muted"></p><button class="btn" onclick="closeModal()">ПРОДОЛЖИТЬ</button></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const tg=window.Telegram?.WebApp; tg?.ready(); tg?.expand();
+const initData=tg?.initData||"";
+let S=null, selectedUpgrade=null;
+const fmt=n=>Number(n).toLocaleString("ru-RU")+" DNC";
+const api=async(path,body={})=>{const r=await fetch("/api/"+path,{method:body? "POST":"GET",headers:{"Content-Type":"application/json","X-Telegram-Init-Data":initData},body:body?JSON.stringify(body):undefined});const j=await r.json();if(!r.ok)throw Error(j.detail||"Ошибка");return j};
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",2400)}
+function rarityIcon(r){return {"Consumer":"⚪","Industrial":"🔵","Mil-Spec":"🔷","Restricted":"🟣","Classified":"🩷","Covert":"🔴","Rare Special":"🟡"}[r]||"🔫"}
+function render(){
+ document.getElementById("balance").textContent=fmt(S.balance);
+ document.getElementById("creatorBalance").textContent=S.is_creator?"👑 CREATOR WALLET · "+fmt(S.creator_balance):"";
+ document.getElementById("avatar").textContent=(S.user.first_name||"D").slice(0,1).toUpperCase();
+ document.getElementById("playerName").textContent=S.user.first_name+(S.user.username?" @"+S.user.username:"");
+ document.getElementById("playerId").textContent="Telegram ID · "+S.user.id;
+ document.getElementById("creatorLabel").textContent=S.is_creator?"👑 Создатель DanekCase":"";
+ document.getElementById("stats").innerHTML=`<div class="stat"><strong>${S.stats.opened}</strong><small>Открыто кейсов</small></div><div class="stat"><strong>${S.inventory.length}</strong><small>Скинов в инвентаре</small></div><div class="stat"><strong>${S.stats.upgrades_won}</strong><small>Успешных апгрейдов</small></div><div class="stat"><strong>${S.stats.upgrades_lost}</strong><small>Неудачных апгрейдов</small></div>`;
+ document.getElementById("dailyBtn").disabled=!S.daily_ready;
+ document.getElementById("dailyBtn").textContent=S.daily_ready?"ЗАБРАТЬ +500 DNC":"БОНУС УЖЕ ПОЛУЧЕН";
+ document.getElementById("caseGrid").innerHTML=S.cases.map((c,i)=>`<div class="case"><div class="caseart">${["📦","🧰","💎"][i]}</div><h3>${c.name}</h3><div class="price">${fmt(c.price)}</div><button class="btn" onclick="openCase('${c.id}')">ОТКРЫТЬ</button></div>`).join("");
+ document.getElementById("invCount").textContent=S.inventory.length+" предметов";
+ document.getElementById("inventory").innerHTML=S.inventory.length?S.inventory.map(it=>`<div class="item"><div class="skinicon">${rarityIcon(it.rarity)}</div><div class="itemmain"><div class="itemname">${it.name}</div><div class="itemmeta">${it.rarity}</div><div class="value">${fmt(it.price)}</div></div><button class="smallbtn" onclick="sell(${it.id})">ПРОДАТЬ</button></div>`).join(""):'<div class="empty">🎒 Здесь пока пусто.<br>Открой первый кейс!</div>';
+ renderUpgrade();
+}
+function renderUpgrade(){
+ const el=document.getElementById("upgrade");
+ if(!S.inventory.length){el.innerHTML='<div class="empty">Сначала выбей скин из кейса.</div>';return}
+ el.innerHTML=S.inventory.map(it=>`<div class="item"><div class="skinicon">${rarityIcon(it.rarity)}</div><div class="itemmain"><div class="itemname">${it.name}</div><div class="value">${fmt(it.price)}</div></div><button class="smallbtn" onclick="chooseUpgrade(${it.id},${it.skin_idx})">УЛУЧШИТЬ</button></div>`).join("");
+}
+async function refresh(){S=await api("state",null);render()}
+async function openCase(id){try{const j=await api("open",{case_id:id});S=j.state;render();document.getElementById("dropIcon").textContent=rarityIcon(j.result.skin.rarity);document.getElementById("dropTitle").textContent="ТЕБЕ ВЫПАЛО!";document.getElementById("dropText").textContent=j.result.skin.name+" · "+fmt(j.result.skin.price);document.getElementById("modal").classList.add("show");tg?.HapticFeedback?.notificationOccurred("success")}catch(e){toast(e.message)}}
+async function sell(id){try{const j=await api("sell",{item_id:id});S=j.state;render();toast("Продано: +"+fmt(j.sold));tg?.HapticFeedback?.impactOccurred("light")}catch(e){toast(e.message)}}
+async function daily(){try{const j=await api("daily");S=j.state;render();toast("Начислено +500 DNC")}catch(e){toast(e.message)}}
+async function chooseUpgrade(id,idx){
+ const src=S.skins[idx], options=S.skins.map((s,i)=>({...s,idx:i,chance:Math.max(5,Math.min(85,Math.floor(src.price/s.price*75)))})).filter(s=>s.price>src.price);
+ if(!options.length){toast("Для этого скина пока нет цели");return}
+ const menu=options.map(s=>`${s.idx+1}. ${s.name} · шанс ${s.chance}%`).join("\n");
+ const choice=prompt("Выбери номер цели:\n"+menu);
+ if(choice===null)return;const target=options.find(s=>s.idx===Number(choice)-1);
+ if(!target){toast("Неверный номер");return}
+ const chance=Math.max(5,Math.min(85,Math.floor(src.price/target.price*75)));
+ if(!confirm(`Поставить ${src.name} на ${target.name}?\nШанс успеха: ${chance}%.\nПри неудаче исходный скин сгорит.`))return;
+ try{const j=await api("upgrade",{item_id:id,target_idx:target.idx});S=j.state;render();document.getElementById("dropIcon").textContent=j.success?"🎉":"💥";document.getElementById("dropTitle").textContent=j.success?"АПГРЕЙД УДАЛСЯ":"НЕУДАЧА";document.getElementById("dropText").textContent=j.success?j.skin.name+" · шанс был "+j.chance+"%":"Исходный скин потерян. Шанс был "+j.chance+"%";document.getElementById("modal").classList.add("show")}catch(e){toast(e.message)}
+}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(b.dataset.page+"Page").classList.add("active")}));
+if(!initData){document.body.innerHTML='<div style="padding:35px;color:white;font-family:system-ui"><h2>Открой DanekCase через Telegram</h2><p style="color:#9aa">Для входа нужна проверенная Telegram-сессия. Нажми кнопку Mini App в боте.</p></div>'}
+else refresh().catch(e=>{document.body.innerHTML='<div style="padding:30px;color:white">Ошибка: '+e.message+'</div>'});
+</script>
+</body></html>
