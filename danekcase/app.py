@@ -34,52 +34,53 @@ SKINS = [
     {"name":"AK-47 | Neon Rider","price":1800,"rarity":"Covert","color":"#f06b6b"},
     {"name":"AWP | Asiimov","price":2600,"rarity":"Covert","color":"#ff8b45"},
     {"name":"Karambit | Doppler","price":6500,"rarity":"Rare Special","color":"#f3ca65"},
-{"name":"M4A4 | Neo-Noir","price":3200,"rarity":"Covert","color":"#e879f9"},
-{"name":"AK-47 | Bloodsport","price":3800,"rarity":"Covert","color":"#ef4444"},
-{"name":"AWP | Hyper Beast","price":4200,"rarity":"Covert","color":"#22d3ee"},
-{"name":"Desert Eagle | Printstream","price":2800,"rarity":"Covert","color":"#f8fafc"},
-{"name":"AK-47 | The Empress","price":5200,"rarity":"Covert","color":"#fbbf24"},
-{"name":"AWP | Dragon Lore","price":15000,"rarity":"Covert","color":"#f97316"},
-{"name":"Butterfly Knife | Fade","price":18000,"rarity":"Rare Special","color":"#c084fc"},
-{"name":"M9 Bayonet | Doppler","price":14000,"rarity":"Rare Special","color":"#818cf8"},
-{"name":"Sport Gloves | Vice","price":12000,"rarity":"Rare Special","color":"#ec4899"},
-{"name":"AK-47 | Wild Lotus","price":11000,"rarity":"Covert","color":"#4ade80"},
-{"name":"AWP | Gungnir","price":16000,"rarity":"Covert","color":"#60a5fa"},
-{"name":"Karambit | Gamma Doppler","price":20000,"rarity":"Rare Special","color":"#34d399"},
-]
+    {"name":"M4A4 | Neo-Noir","price":3200,"rarity":"Covert","color":"#e879f9"},
+    {"name":"AK-47 | Bloodsport","price":3800,"rarity":"Covert","color":"#ef4444"},
+    {"name":"AWP | Hyper Beast","price":4200,"rarity":"Covert","color":"#22d3ee"},
+    {"name":"Desert Eagle | Printstream","price":2800,"rarity":"Covert","color":"#f8fafc"},
+    {"name":"AK-47 | The Empress","price":5200,"rarity":"Covert","color":"#fbbf24"},
+    {"name":"AWP | Dragon Lore","price":15000,"rarity":"Covert","color":"#f97316"},
+    {"name":"Butterfly Knife | Fade","price":18000,"rarity":"Rare Special","color":"#c084fc"},
+    {"name":"M9 Bayonet | Doppler","price":14000,"rarity":"Rare Special","color":"#818cf8"},
+    {"name":"Sport Gloves | Vice","price":12000,"rarity":"Rare Special","color":"#ec4899"},
+    {"name":"AK-47 | Wild Lotus","price":11000,"rarity":"Covert","color":"#4ade80"},
+    {"name":"AWP | Gungnir","price":16000,"rarity":"Covert","color":"#60a5fa"},
+    {"name":"Karambit | Gamma Doppler","price":20000,"rarity":"Rare Special","color":"#34d399"},
 ]
 CASES = {
-"starter":{"name":"STARTER CASE","price":300,"drops":[0,1,2,3,4]},
-"weapon":{"name":"WEAPON CASE","price":850,"drops":[1,2,3,4,5,6]},
-"elite":{"name":"ELITE CASE","price":2200,"drops":[3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]},
-"neon":{"name":"NEON CASE","price":1500,"drops":[2,3,5,8,9]},
-"phoenix":{"name":"PHOENIX CASE","price":2500,"drops":[4,5,6,9,10]},
-"royal":{"name":"ROYAL CASE","price":5000,"drops":[6,7,10,12,13,14]},
-"knife":{"name":"KNIFE CASE","price":8000,"drops":[7,14,15,16,17,19]},
-"dragon":{"name":"DRAGON CASE","price":10000,"drops":[10,12,13,17,19]},
-"cyber":{"name":"CYBER CASE","price":3500,"drops":[5,8,9,10,11]},
-"vanguard":{"name":"VANGUARD CASE","price":6000,"drops":[9,10,11,12,13,14]},
-"mythic":{"name":"MYTHIC CASE","price":12000,"drops":[12,13,14,15,16,17,18,19]},
-"legend":{"name":"LEGEND CASE","price":20000,"drops":[15,16,17,18,19]},
-"inferno":{"name":"INFERNO CASE","price":4500,"drops":[5,6,8,9,10,11]},
+    "starter":{"name":"STARTER CASE","price":300,"drops":[0,1,2,3,4]},
+    "weapon":{"name":"WEAPON CASE","price":850,"drops":[1,2,3,4,5,6]},
+    "elite":{"name":"ELITE CASE","price":2200,"drops":[3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]},
+    "neon":{"name":"NEON CASE","price":1500,"drops":[2,3,5,8,9]},
+    "phoenix":{"name":"PHOENIX CASE","price":2500,"drops":[4,5,6,9,10]},
+    "royal":{"name":"ROYAL CASE","price":5000,"drops":[6,7,10,12,13,14]},
+    "knife":{"name":"KNIFE CASE","price":8000,"drops":[7,14,15,16,17,19]},
+    "dragon":{"name":"DRAGON CASE","price":10000,"drops":[10,12,13,17,19]},
+    "cyber":{"name":"CYBER CASE","price":3500,"drops":[5,8,9,10,11]},
+    "vanguard":{"name":"VANGUARD CASE","price":6000,"drops":[9,10,11,12,13,14]},
+    "mythic":{"name":"MYTHIC CASE","price":12000,"drops":[12,13,14,15,16,17,18,19]},
+    "legend":{"name":"LEGEND CASE","price":20000,"drops":[15,16,17,18,19]},
+    "inferno":{"name":"INFERNO CASE","price":4500,"drops":[5,6,8,9,10,11]},
 }
 def db():
     c=sqlite3.connect(DB)
     c.row_factory=sqlite3.Row
     return c
 
+
 def init_db():
     with db() as c:
         c.execute("""CREATE TABLE IF NOT EXISTS users(
           user_id INTEGER PRIMARY KEY, balance INTEGER NOT NULL DEFAULT 2500,
           creator_balance INTEGER NOT NULL DEFAULT 0, daily_at INTEGER NOT NULL DEFAULT 0)""")
-        cols=[r["name"] for r in c.execute("PRAGMA table_info(users)").fetchall()]
+        cols = [r["name"] for r in c.execute("PRAGMA table_info(users)").fetchall()]
         if "creator_balance" not in cols:
             c.execute("ALTER TABLE users ADD COLUMN creator_balance INTEGER NOT NULL DEFAULT 0")
-if "is_vip" not in cols:
-c.execute("ALTER TABLE users ADD COLUMN is_vip INTEGER NOT NULL DEFAULT 0")
-if "friend_bonus_granted" not in cols:
-c.execute("ALTER TABLE users ADD COLUMN friend_bonus_granted INTEGER NOT NULL DEFAULT 0")
+        if "is_vip" not in cols:
+            c.execute("ALTER TABLE users ADD COLUMN is_vip INTEGER NOT NULL DEFAULT 0")
+        if "friend_bonus_granted" not in cols:
+            c.execute("ALTER TABLE users ADD COLUMN friend_bonus_granted INTEGER NOT NULL DEFAULT 0")
+
         c.execute("""CREATE TABLE IF NOT EXISTS inventory(
           id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,
           skin_idx INTEGER NOT NULL,obtained_at INTEGER NOT NULL)""")
@@ -88,33 +89,29 @@ c.execute("ALTER TABLE users ADD COLUMN friend_bonus_granted INTEGER NOT NULL DE
           upgrades_won INTEGER NOT NULL DEFAULT 0,upgrades_lost INTEGER NOT NULL DEFAULT 0)""")
 
 def ensure(uid):
-is_creator = bool(CREATOR_ID and uid == CREATOR_ID)
+    is_creator = bool(CREATOR_ID and uid == CREATOR_ID)
     with db() as c:
-    c.execute(
-        "INSERT OR IGNORE INTO users(user_id,balance,creator_balance) VALUES(?,?,?)",
-        (uid, CREATOR_BALANCE if is_creator else START_BALANCE,
-         CREATOR_BALANCE if is_creator else 0)
-    )
-
-    c.execute("INSERT OR IGNORE INTO stats(user_id) VALUES(?)", (uid,))
-
-    if is_creator:
         c.execute(
-            "UPDATE users SET balance=?,creator_balance=? WHERE user_id=? AND creator_balance=0",
-            (CREATOR_BALANCE, CREATOR_BALANCE, uid)
+            "INSERT OR IGNORE INTO users(user_id,balance,creator_balance) VALUES(?,?,?)",
+            (uid, CREATOR_BALANCE if is_creator else START_BALANCE,
+             CREATOR_BALANCE if is_creator else 0)
         )
+        c.execute("INSERT OR IGNORE INTO stats(user_id) VALUES(?)", (uid,))
 
-    if uid == FRIEND_ID:
-        c.execute(
-            """UPDATE users
-               SET balance=balance+?, is_vip=1, friend_bonus_granted=1
-               WHERE user_id=? AND friend_bonus_granted=0""",
-            (FRIEND_BONUS, uid)
-        )
-        c.execute(
-            "UPDATE users SET is_vip=1 WHERE user_id=?",
-            (uid,)
-        )
+        if is_creator:
+            c.execute(
+                "UPDATE users SET balance=?,creator_balance=? WHERE user_id=? AND creator_balance=0",
+                (CREATOR_BALANCE, CREATOR_BALANCE, uid)
+            )
+
+        if uid == FRIEND_ID:
+            c.execute(
+                """UPDATE users
+                   SET balance=balance+?, is_vip=1, friend_bonus_granted=1
+                   WHERE user_id=? AND friend_bonus_granted=0""",
+                (FRIEND_BONUS, uid)
+            )
+            c.execute("UPDATE users SET is_vip=1 WHERE user_id=?", (uid,))
 
 def telegram_user(init_data: str):
     if not TOKEN or not init_data:
@@ -147,39 +144,43 @@ class Action(BaseModel):
     case_id:str|None=None
     target_idx:int|None=None
 
-def state_for(uid, user):
-ensure(uid)
-with db() as c:
-u=c.execute("SELECT  FROM users WHERE user_id=?",(uid,)).fetchone()
-stats=c.execute("SELECT  FROM stats WHERE user_id=?",(uid,)).fetchone()
-rows=c.execute("SELECT id,skin_idx,obtained_at FROM inventory WHERE user_id=? ORDER BY id DESC",(uid,)).fetchall()
-    return {
-      items=[]
-for r in rows:
-    s=SKINS[r["skin_idx"]]
-    items.append({"id":r["id"],"skin_idx":r["skin_idx"],**s})
 
-return {
-  "user":{
-    "id":uid,
-    "first_name":user.get("first_name","Игрок"),
-    "username":user.get("username",""),
-    "is_vip":bool(u["is_vip"])
-  },
-  "balance":u["balance"],
-  "creator_balance":u["creator_balance"] if uid==CREATOR_ID else None,
-  "is_creator":uid==CREATOR_ID,
-  "special_upgrade_bonus":uid==FRIEND_ID,
-  "daily_ready":time.time()-u["daily_at"]>=86400,
-  "inventory":items,
-  "stats":{
-    "opened":stats["opened"],
-    "upgrades_won":stats["upgrades_won"],
-    "upgrades_lost":stats["upgrades_lost"]
-  },
-  "cases":[{"id":k,"name":v["name"],"price":v["price"]} for k,v in CASES.items()],
-  "skins":SKINS
-}
+def state_for(uid, user):
+    ensure(uid)
+    with db() as c:
+        u = c.execute("SELECT * FROM users WHERE user_id=?", (uid,)).fetchone()
+        stats = c.execute("SELECT * FROM stats WHERE user_id=?", (uid,)).fetchone()
+        rows = c.execute(
+            "SELECT id,skin_idx,obtained_at FROM inventory WHERE user_id=? ORDER BY id DESC",
+            (uid,)
+        ).fetchall()
+
+    items = []
+    for r in rows:
+        s = SKINS[r["skin_idx"]]
+        items.append({"id":r["id"],"skin_idx":r["skin_idx"],**s})
+
+    return {
+        "user": {
+            "id":uid,
+            "first_name":user.get("first_name","Игрок"),
+            "username":user.get("username",""),
+            "is_vip":bool(u["is_vip"])
+        },
+        "balance":u["balance"],
+        "creator_balance":u["creator_balance"] if uid==CREATOR_ID else None,
+        "is_creator":uid==CREATOR_ID,
+        "special_upgrade_bonus":uid==FRIEND_ID,
+        "daily_ready":time.time()-u["daily_at"]>=86400,
+        "inventory":items,
+        "stats":{
+            "opened":stats["opened"],
+            "upgrades_won":stats["upgrades_won"],
+            "upgrades_lost":stats["upgrades_lost"]
+        },
+        "cases":[{"id":k,"name":v["name"],"price":v["price"]} for k,v in CASES.items()],
+        "skins":SKINS
+    }
 
 @app.get("/")
 def index():
