@@ -229,7 +229,7 @@ def upgrade(action:Action, x_telegram_init_data: str = Header(default="")):
         src=row["skin_idx"]; dst=action.target_idx
         src_price=SKINS[src]["price"]; dst_price=SKINS[dst]["price"]
         if dst_price<=src_price: raise HTTPException(400,"Цель должна быть дороже")
-        chance=70 if uid==FRIEND_ID else max(5,min(85,int(src_price/dst_price*75)))21:11
+        chance = 70 if uid == FRIEND_ID else max(5, min(85, int(src_price / dst_price * 75)))
         success=random.randint(1,100)<=chance
         c.execute("DELETE FROM inventory WHERE id=? AND user_id=?",(action.item_id,uid))
         if success:
